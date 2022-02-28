@@ -10,4 +10,8 @@ public class StaticInnerSingleton {
     public static StaticInnerSingleton getInstance() {
         return StaticInnerSingletonHolder.INSTANCE;
     }
+
+    protected Object readResolve() {
+        return getInstance();
+    }
 }
