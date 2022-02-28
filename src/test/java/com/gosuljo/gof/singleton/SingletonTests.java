@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @SpringBootTest
@@ -62,5 +64,17 @@ public class SingletonTests {
         StaticInnerSingleton singleton2 = StaticInnerSingleton.getInstance();
 
         Assertions.assertEquals(singleton1, singleton2);
+    }
+
+    // static inner singleton 깨트리기
+    @Test
+    public void singleton_test_7() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        StaticInnerSingleton singleton1 = StaticInnerSingleton.getInstance();
+
+        Constructor<StaticInnerSingleton> constructor = StaticInnerSingleton.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        StaticInnerSingleton singleton2 = constructor.newInstance();
+
+        Assertions.assertNotEquals(singleton1, singleton2);
     }
 }
