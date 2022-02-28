@@ -1,9 +1,6 @@
 package com.gosuljo.gof.singleton;
 
-import com.gosuljo.gof.vo.EarlyMakeSingleton;
-import com.gosuljo.gof.vo.NoneSingletonVO;
-import com.gosuljo.gof.vo.SimpleSingleton;
-import com.gosuljo.gof.vo.SimpleSyncSingleton;
+import com.gosuljo.gof.vo.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,6 +42,15 @@ public class SingletonTests {
     public void singleton_test_4() {
         EarlyMakeSingleton singleton1 = EarlyMakeSingleton.getInstance();
         EarlyMakeSingleton singleton2 = EarlyMakeSingleton.getInstance();
+
+        Assertions.assertEquals(singleton1, singleton2);
+    }
+
+    // double check locking 방법을 사용한 스레드 세이프 싱글톤
+    @Test
+    public void singleton_test_5() {
+        DCLSingleton singleton1 = DCLSingleton.getInstance();
+        DCLSingleton singleton2 = DCLSingleton.getInstance();
 
         Assertions.assertEquals(singleton1, singleton2);
     }
