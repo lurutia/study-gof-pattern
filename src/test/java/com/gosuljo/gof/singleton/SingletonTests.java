@@ -54,4 +54,13 @@ public class SingletonTests {
 
         Assertions.assertEquals(singleton1, singleton2);
     }
+
+    // static inner 사용 singleton
+    @Test
+    public void singleton_test_6() {
+        StaticInnerSingleton singleton1 = StaticInnerSingleton.getInstance();
+        StaticInnerSingleton singleton2 = StaticInnerSingleton.getInstance();
+
+        Assertions.assertEquals(singleton1, singleton2);
+    }
 }
