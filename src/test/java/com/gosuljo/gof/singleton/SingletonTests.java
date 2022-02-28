@@ -1,5 +1,6 @@
 package com.gosuljo.gof.singleton;
 
+import com.gosuljo.gof.vo.EarlyMakeSingleton;
 import com.gosuljo.gof.vo.NoneSingletonVO;
 import com.gosuljo.gof.vo.SimpleSingleton;
 import com.gosuljo.gof.vo.SimpleSyncSingleton;
@@ -39,4 +40,12 @@ public class SingletonTests {
         Assertions.assertEquals(singleton1, singleton2);
     }
 
+    // 이른 초기화 생성 쓰레드 세이프한 싱글톤
+    @Test
+    public void singleton_test_4() {
+        EarlyMakeSingleton singleton1 = EarlyMakeSingleton.getInstance();
+        EarlyMakeSingleton singleton2 = EarlyMakeSingleton.getInstance();
+
+        Assertions.assertEquals(singleton1, singleton2);
+    }
 }
