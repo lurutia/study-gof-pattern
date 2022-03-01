@@ -4,6 +4,8 @@ import com.gosuljo.gof.vo.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -85,5 +87,15 @@ public class SingletonTests {
 		Runtime runtime2 = Runtime.getRuntime();
 
 		Assertions.assertEquals(runtime1, runtime2);
+	}
+
+	// spring context bean singleton test
+	@Test
+	public void singleton_example_2() {
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+		String hello1 = applicationContext.getBean("hello", String.class);
+		String hello2 = applicationContext.getBean("hello", String.class);
+
+		Assertions.assertEquals(hello1, hello2);
 	}
 }
