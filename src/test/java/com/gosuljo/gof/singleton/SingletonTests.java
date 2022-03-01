@@ -77,4 +77,13 @@ public class SingletonTests {
 
         Assertions.assertNotEquals(singleton1, singleton2);
     }
+
+	// java runtime singleton test
+	@Test
+	public void singleton_example_1() {
+		Runtime runtime1 = Runtime.getRuntime();
+		Runtime runtime2 = Runtime.getRuntime();
+
+		Assertions.assertEquals(runtime1, runtime2);
+	}
 }
