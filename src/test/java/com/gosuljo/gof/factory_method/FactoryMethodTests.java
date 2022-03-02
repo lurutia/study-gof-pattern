@@ -1,5 +1,9 @@
 package com.gosuljo.gof.factory_method;
 
+import com.gosuljo.gof.infra.factory.car.BlackCarFactory;
+import com.gosuljo.gof.infra.factory.car.Car;
+import com.gosuljo.gof.infra.factory.car.CarFactory;
+import com.gosuljo.gof.infra.factory.car.WhiteCarFactory;
 import com.gosuljo.gof.infra.factory.fish.Fish;
 import com.gosuljo.gof.infra.factory.fish.FishFactory;
 import org.junit.jupiter.api.Assertions;
@@ -24,4 +28,21 @@ public class FactoryMethodTests {
 		Assertions.assertEquals(blackFish.getColor(), "black");
 		System.out.println(blackFish);
 	}
+
+	// default factory method test
+	@Test
+	public void factory_method_test_2() {
+		Car whiteCar = new WhiteCarFactory().orderCar("whiteCar", "car@email.com");
+		System.out.println(whiteCar);
+		Assertions.assertEquals(whiteCar.getName(), "whiteCar");
+		Assertions.assertEquals(whiteCar.getLogo(), "\uD83D\uDEE5");
+		Assertions.assertEquals(whiteCar.getColor(), "white");
+
+		Car blackCar = new BlackCarFactory().orderCar("blackCar", "car@mail.com");
+		Assertions.assertEquals(blackCar.getName(), "blackCar");
+		Assertions.assertEquals(blackCar.getLogo(), "T");
+		Assertions.assertEquals(blackCar.getColor(), "black");
+		System.out.println(blackCar);
+	}
+
 }
