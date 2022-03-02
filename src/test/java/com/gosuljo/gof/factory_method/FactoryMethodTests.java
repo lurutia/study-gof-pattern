@@ -45,4 +45,23 @@ public class FactoryMethodTests {
 		System.out.println(blackCar);
 	}
 
+	// client factory method test
+	@Test
+	public void factory_method_test_3() {
+		Car whiteCar = generateCarClient(new WhiteCarFactory(), "whiteCar", "car@mail.com");
+		System.out.println(whiteCar);
+		Assertions.assertEquals(whiteCar.getName(), "whiteCar");
+		Assertions.assertEquals(whiteCar.getLogo(), "\uD83D\uDEE5");
+		Assertions.assertEquals(whiteCar.getColor(), "white");
+
+		Car blackCar = generateCarClient(new BlackCarFactory(), "blackCar", "car@mail.com");
+		Assertions.assertEquals(blackCar.getName(), "blackCar");
+		Assertions.assertEquals(blackCar.getLogo(), "T");
+		Assertions.assertEquals(blackCar.getColor(), "black");
+		System.out.println(blackCar);
+	}
+
+	private Car generateCarClient(CarFactory factory, String name, String email) {
+		return factory.orderCar(name, email);
+	}
 }
