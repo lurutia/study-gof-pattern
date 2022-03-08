@@ -2,6 +2,7 @@ package com.gosuljo.gof.builder;
 
 import com.gosuljo.gof.infra.builder.after.DefaultTourPlanBuilder;
 import com.gosuljo.gof.infra.builder.after.TourPlanBuilder;
+import com.gosuljo.gof.infra.builder.before.TourDirector;
 import com.gosuljo.gof.infra.builder.before.TourPlan;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,5 +51,13 @@ public class BuilderTests {
         TourPlan longBeachTrip = builder.title("롱비치")
                 .startDate(LocalDate.of(2021, 7, 15))
                 .build();
+    }
+
+    // Director 사용 객체 생성 테스트
+    @Test
+    public void builder_test_3() {
+        TourDirector director = new TourDirector(new DefaultTourPlanBuilder());
+        TourPlan tourPlan = director.cancunTrip();
+        TourPlan longBeachTrip = director.longBeachTrip();
     }
 }
