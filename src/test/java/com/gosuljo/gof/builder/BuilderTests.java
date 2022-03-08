@@ -1,5 +1,7 @@
 package com.gosuljo.gof.builder;
 
+import com.gosuljo.gof.infra.builder.after.DefaultTourPlanBuilder;
+import com.gosuljo.gof.infra.builder.after.TourPlanBuilder;
 import com.gosuljo.gof.infra.builder.before.TourPlan;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,5 +33,22 @@ public class BuilderTests {
         TourPlan shortTrip = new TourPlan();
         shortTrip.setTitle("오래곤 롱비치 여행");
         shortTrip.setStartDate(LocalDate.of(2021, 7, 15));
+    }
+
+    // 빌더패턴 사용해 플랜 만드는 테스트
+    @Test
+    public void builder_test_2() {
+        TourPlanBuilder builder = new DefaultTourPlanBuilder();
+        TourPlan plan = builder.title("칸쿤 여행")
+                .nightAndDays(2, 3)
+                .startDate(LocalDate.of(2020, 12, 9))
+                .whereToStay("리조트")
+                .addPlan(0, "체크인하고 짐 풀기")
+                .addPlan(0, "저녁 식사")
+                .build();
+
+        TourPlan longBeachTrip = builder.title("롱비치")
+                .startDate(LocalDate.of(2021, 7, 15))
+                .build();
     }
 }
