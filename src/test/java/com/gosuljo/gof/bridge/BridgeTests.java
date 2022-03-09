@@ -1,5 +1,7 @@
 package com.gosuljo.gof.bridge;
 
+import com.gosuljo.gof.infra.bridge.after.KDA;
+import com.gosuljo.gof.infra.bridge.after.아리;
 import com.gosuljo.gof.infra.bridge.before.Champion;
 import com.gosuljo.gof.infra.bridge.before.KDA아리;
 import org.junit.jupiter.api.Test;
@@ -14,5 +16,15 @@ public class BridgeTests {
         Champion kda아리 = new KDA아리();
         kda아리.skillQ();
         kda아리.skillR();
+    }
+
+    /*
+
+    * */
+    @Test
+    public void bridge_test_2() {
+        Champion kda아리 = new 아리(new KDA());
+        kda아리.skillQ();
+        kda아리.skillW();
     }
 }
